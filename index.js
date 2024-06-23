@@ -10,7 +10,7 @@ const client = new Client({
 });
 
 /**
- * @returns {Colors}
+ * @returns {import('discord.js/typings/index.js').ColorResolvable}
  */
 const getRandomColor = () => {
   const colors = Object.values(Colors);
@@ -32,6 +32,10 @@ client.once('ready', async () => {
   if (!rainbowRole) {
     console.log(colorette.redBright('Role not found'));
     return;
+  }
+
+  if (!config.updateSeconds <= 15 || !config.updateSeconds) {
+    throw new Error('Update seconds must be greater than 15');
   }
 
   setInterval(() => {
